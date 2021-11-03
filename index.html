@@ -9,14 +9,17 @@
 
 <body>
     <h1>TravelTip Starter</h1>
-    <div id="map" style="width: 100%; height: 400px;"></div>
+    <input type="text" class="search"><button onclick="onSearchLocation()" class="btn-search">Go</button>
+
+    
     <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
-    <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
+    <button onclick="onGetUserPos()" class="btn-user-pos">My Position</button>
+    <div id="map" style="width: 100%; height: 400px;"></div>
     <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
     <button onclick="onPanTo()" class="btn-pan">Pan Map to Tokyo</button>
-    <div class="table-container"></div>
     <p>You are at: <span class="user-pos"></span></p>
-    <p>Locations: <span class="locs"></span></p>
+    
+    <p>Locations: <div class="locs">No saved locations <div>To save a location click on the desired location on the map</div></div></p>
 
 
     <script type="module" src="js/controller.js"></script>
