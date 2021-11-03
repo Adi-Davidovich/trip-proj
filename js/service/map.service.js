@@ -1,4 +1,5 @@
 import {locService} from './loc.service.js'
+import {storageService} from './storage.servic.js'
 
 export const mapService = {
     initMap,
@@ -35,8 +36,6 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
         
                 // extract the lat and lng from the map event
                 const {lat , lng} = mapsMouseEvent.latLng.toJSON()
-                
-
                 infoWindow.setContent(
                     `<input type="text" placeholder="enter title" class="save-loc">
                     <h4>save?</h4>

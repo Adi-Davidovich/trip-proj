@@ -5,10 +5,7 @@ export const locService = {
 }
 var gIdx = 0
 
-const locs = [
-    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
-    { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
-]
+const locs = [];
 
 function getLocs() {
     return new Promise((resolve, reject) => {
@@ -29,9 +26,8 @@ function creatNewLocation(lat, lng, id, title , weather = null, createdAt = Date
         createdAt, 
         updatedAt
     }
-    // TODO: save to local storage
-    // locs.push(}
-    return loc
+    locs.push(loc)
+    saveToStorage('locs', locs)
 }
 
 function saveloc(lat, lng){
