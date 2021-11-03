@@ -1,3 +1,5 @@
+console.log('bye');
+
 export const locService = {
     getLocs
 }
