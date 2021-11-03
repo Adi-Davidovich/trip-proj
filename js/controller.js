@@ -53,6 +53,11 @@ function onPanTo() {
     mapService.panTo(35.6895, 139.6917);
 }
 
-function onSaveLoc(lat, lng){
+function onSaveLoc(lat, lng) {
     locService.saveloc(lat, lng)
+}
+
+function onRenderLoc() {
+    locService.renderLoc()
+
 }

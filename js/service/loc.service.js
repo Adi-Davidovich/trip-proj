@@ -1,10 +1,10 @@
-console.log("hi")
 export const locService = {
     getLocs,
     saveloc
 }
-import {storageService} from './storage.servic.js'
+import { storageService } from './storage.servic.js'
 
+window.renderLoc = renderLoc;
 var gIdx = 0
 
 const locs = [];
@@ -18,22 +18,35 @@ function getLocs() {
 }
 
 
-function creatNewLocation(lat, lng, id, title , weather = null, createdAt = Date.now(), updatedAt = null) {
+function creatNewLocation(lat, lng, id, title, weather = null, createdAt = Date.now(), updatedAt = null) {
     var loc = {
         id,
         title,
         lat,
         lng,
         weather,
-        createdAt, 
+        createdAt,
         updatedAt
     }
     locs.push(loc)
-    saveToStorage('locs', locs)
+    storageService.saveToStorage('locs', locs)
     console.log(locs)
+    renderLoc()
 }
 
-function saveloc(lat, lng){
-    var title = document.querySelector(".save-loc").value 
-    creatNewLocation(lat, lng, gIdx++, title)  
+function saveloc(lat, lng) {
+    var title = document.querySelector(".save-loc").value
+    creatNewLocation(lat, lng, gIdx++, title)
+}
+
+function renderLoc() {
+    if (!locs) return;
+    var Htmls = locs.map(loc => {
+        return `<tr>
+        <td>${loc.title}</td>
+        <td>${loc.lat, loc.lng}</td>
+        </tr>`
+    })
+    document.querySelector("tbody").innerHTML = Htmls;
+
 }
