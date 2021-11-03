@@ -15,7 +15,7 @@ function onInit() {
     mapService.initMap()
         .then(() => {
             console.log('Map is ready');
-            onRenderLoc()
+            _renderLoc()
         })
         .catch(() => console.log('Error: cannot init map'));
 }
@@ -60,10 +60,10 @@ function onPanTo(lat, lng) {
 
 function onSaveLoc(lat, lng) {
     locService.saveloc(lat, lng)
-    onRenderLoc()
+    _renderLoc()
 }
 
-function onRenderLoc() {
+function _renderLoc() {
     locService.getLocs().then(locs => {
         if (!locs || !locs.length) return
     var HtmlTable = `<table><thead><th>Title</th><th>Location</th><th></th><th></th></thead><tbody>`
@@ -83,10 +83,11 @@ function onRenderLoc() {
 
 function onDeleteLoc(locId) {
     locService.deleteLoc(locId)
-    onRenderLoc()
+    _renderLoc()
 }
 
 function onSearchLocation() {
-
+    const searchValue = document.querySelector('.search').value
+    locService.searchLocation(searchValue)
+    _renderLoc()
 }
-// <!-- https://maps.googleapis.com/maps/api/geocode/json?address=<ADDRESS>&key=YOUR_API_KEY -->
