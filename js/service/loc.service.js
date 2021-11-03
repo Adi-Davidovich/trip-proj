@@ -1,3 +1,4 @@
+console.log("hi")
 export const locService = {
     getLocs,
     saveloc
@@ -25,7 +26,7 @@ function creatNewLocation(lat, lng, id, title , weather = null, createdAt = Date
         lat,
         lng,
         weather,
-        createdAt,
+        createdAt, 
         updatedAt
     }
     // TODO: save to local storage
