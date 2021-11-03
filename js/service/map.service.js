@@ -39,11 +39,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 infoWindow.open(gMap);
               });
               console.log('hi');
-<<<<<<< HEAD
-              console.log('test!!!!!!')
-=======
               console.log('hiiiiiii');
->>>>>>> b1a4f5ebaf57c55e54f87d90b582997cb5f2e797
         })
         
 }
