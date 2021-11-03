@@ -1,4 +1,4 @@
-
+import {locService} from './loc.service.js'
 
 export const mapService = {
     initMap,
@@ -7,7 +7,7 @@ export const mapService = {
 }
 
 var gMap;
-
+var gLoc;
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     console.log('InitMap');
     return _connectGoogleApi()
@@ -33,13 +33,20 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 infoWindow = new google.maps.InfoWindow({
                   position: mapsMouseEvent.latLng,
                 });
+        
+                // extract the lat and lng from the map event
+                const {lat , lng} = mapsMouseEvent.latLng.toJSON()
+                
+
                 infoWindow.setContent(
-                  JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+                    `
+                    <input type="text" placeholder="enter title" class="save-loc">
+                    <h4>save?</h4>
+                    <button onclick="onSaveLoc(${lat}, ${lng})">save place</button>`
                 );
                 infoWindow.open(gMap);
               });
-              console.log('hi');
-              console.log('hiiiiiii');
+              
         })
         
 }

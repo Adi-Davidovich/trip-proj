@@ -1,10 +1,11 @@
 export const locService = {
-    getLocs
+    getLocs,
+    saveloc
 }
-
+var gIdx = 0
 
 const locs = [
-    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
+    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
 ]
 
@@ -17,3 +18,21 @@ function getLocs() {
 }
 
 
+function creatNewLocation(lat, lng, id, title , weather = null, createdAt = Date.now(), updatedAt = null) {
+    var loc = {
+        id,
+        title,
+        lat,
+        lng,
+        weather,
+        createdAt,
+        updatedAt
+    }
+    console.log('loc', loc);
+    return loc
+}
+
+function saveloc(lat, lng){
+    var elInput = document.querySelector(".save-loc")  
+    creatNewLocation(lat, lng, gIdx++, elInput.value)  
+}
