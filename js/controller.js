@@ -1,6 +1,6 @@
 import { locService } from './service/loc.service.js'
 import { mapService } from './service/map.service.js'
-import { storageService } from './service/storage.servic.js'
+
 
 window.onload = onInit;
 window.onAddMarker = onAddMarker;
@@ -9,6 +9,7 @@ window.onPanTo = onPanTo;
 window.onGetUserPos = onGetUserPos;
 window.onSaveLoc = onSaveLoc
 window.onDeleteLoc = onDeleteLoc
+window.onSearchLocation = onSearchLocation
 
 function onInit() {
     mapService.initMap()
@@ -46,6 +47,7 @@ function onGetUserPos() {
             console.log('User position is:', pos.coords);
             document.querySelector('.user-pos').innerText =
                 `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
+                mapService.panTo(pos.coords.latitude, pos.coords.longitude);  
         })
         .catch(err => {
             console.log('err!!!', err);
@@ -63,11 +65,7 @@ function onSaveLoc(lat, lng) {
 
 function onRenderLoc() {
     locService.getLocs().then(locs => {
-        if (!locs) return;
-        renderLoc(locs)});
-}
-
-function renderLoc(locs){
+        if (!locs || !locs.length) return
     var HtmlTable = `<table><thead><th>Title</th><th>Location</th><th></th><th></th></thead><tbody>`
     var Htmls = locs.map(loc => {
         return `<tr>
@@ -78,10 +76,17 @@ function renderLoc(locs){
             </tr>`
     })
     var HtmlTable1 = `</tbody></table>`
-    document.querySelector(".table-container").innerHTML = HtmlTable + Htmls.join('') + HtmlTable1;
+    document.querySelector(".locs").innerHTML = HtmlTable + Htmls.join('') + HtmlTable1;
+    });
 }
+
 
 function onDeleteLoc(locId) {
     locService.deleteLoc(locId)
     onRenderLoc()
 }
+
+function onSearchLocation() {
+
+}
+// <!-- https://maps.googleapis.com/maps/api/geocode/json?address=<ADDRESS>&key=YOUR_API_KEY -->
