@@ -39,8 +39,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 
 
                 infoWindow.setContent(
-                    `
-                    <input type="text" placeholder="enter title" class="save-loc">
+                    `<input type="text" placeholder="enter title" class="save-loc">
                     <h4>save?</h4>
                     <button onclick="onSaveLoc(${lat}, ${lng})">save place</button>`
                 );

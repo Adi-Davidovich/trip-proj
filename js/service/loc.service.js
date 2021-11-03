@@ -28,11 +28,12 @@ function creatNewLocation(lat, lng, id, title , weather = null, createdAt = Date
         createdAt,
         updatedAt
     }
-    console.log('loc', loc);
+    // TODO: save to local storage
+    // locs.push(}
     return loc
 }
 
 function saveloc(lat, lng){
-    var elInput = document.querySelector(".save-loc")  
-    creatNewLocation(lat, lng, gIdx++, elInput.value)  
+    var title = document.querySelector(".save-loc").value 
+    creatNewLocation(lat, lng, gIdx++, title)  
 }
