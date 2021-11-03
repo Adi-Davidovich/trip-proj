@@ -1,5 +1,5 @@
-import {locService} from './loc.service.js'
-import {storageService} from './storage.servic.js'
+import { locService } from './loc.service.js'
+import { storageService } from './storage.servic.js'
 
 export const mapService = {
     initMap,
@@ -20,7 +20,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             })
             console.log('Map!', gMap);
             let infoWindow = new google.maps.InfoWindow({
-                content: "Click the map to get Lat/Lng!",
+                content: "Click the map to save location!",
                 position: { lat, lng },
               });
             
@@ -48,6 +48,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
         
 }
 
+
 function addMarker(loc) {
     var marker = new google.maps.Marker({
         position: loc,
@@ -57,11 +58,11 @@ function addMarker(loc) {
     return marker;
 }
 
+
 function panTo(lat, lng) {
     var laLatLng = new google.maps.LatLng(lat, lng);
     gMap.panTo(laLatLng);
 }
-
 
 
 function _connectGoogleApi() {
