@@ -43,4 +43,5 @@ function deleteLoc(locId) {
     locs.splice(idx, 1);
     console.log(locs)
     storageService.saveToStorage('locs', locs)
+   
 }
