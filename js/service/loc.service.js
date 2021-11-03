@@ -1,13 +1,13 @@
 export const locService = {
     getLocs,
-    saveloc
+    saveloc,
+    deleteLoc
 }
 import { storageService } from './storage.servic.js'
 
-window.renderLoc = renderLoc;
 var gIdx = 0
 
-const locs = [];
+const locs = storageService.loadFromStorage('locs') || [] 
 
 function getLocs() {
     return new Promise((resolve, reject) => {
@@ -31,7 +31,6 @@ function creatNewLocation(lat, lng, id, title, weather = null, createdAt = Date.
     locs.push(loc)
     storageService.saveToStorage('locs', locs)
     console.log(locs)
-    renderLoc()
 }
 
 function saveloc(lat, lng) {
@@ -39,20 +38,9 @@ function saveloc(lat, lng) {
     creatNewLocation(lat, lng, gIdx++, title)
 }
 
-function renderLoc() {
-    if (!locs) return;
-    var Htmls = locs.map(loc => {
-        return `<tr>
-        <td>${loc.title}</td>
-        <td>${loc.lat, loc.lng}</td>
-        <td><button onClick="onPanTo(${loc.lat}, ${loc.lng})">go</button></td>
-        <td><button onclick="onDeleteLoc((${loc.id}))">delete</button></td>
-        </tr>`
-    })
-    document.querySelector("tbody").innerHTML = Htmls;
-}
-
-
-function deleteLoc(locId){
-    
+function deleteLoc(locId) {
+    const idx = locs.findIndex(loc => locId === loc.id)
+    locs.splice(idx, 1);
+    console.log(locs)
+    storageService.saveToStorage('locs', locs)
 }
