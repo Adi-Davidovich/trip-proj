@@ -1,4 +1,4 @@
-import { locService } from './loc.service'
+import { locService } from './loc.service.js'
 import { mapService } from './map.service.js'
 
 window.onload = onInit;
