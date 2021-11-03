@@ -45,8 +45,14 @@ function renderLoc() {
         return `<tr>
         <td>${loc.title}</td>
         <td>${loc.lat, loc.lng}</td>
+        <td><button onClick="onPanTo(${loc.lat}, ${loc.lng})">go</button></td>
+        <td><button onclick="onDeleteLoc((${loc.id}))">delete</button></td>
         </tr>`
     })
     document.querySelector("tbody").innerHTML = Htmls;
+}
 
+
+function deleteLoc(locId){
+    
 }
