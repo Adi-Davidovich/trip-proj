@@ -3,6 +3,8 @@ export const locService = {
     getLocs,
     saveloc
 }
+import {storageService} from './storage.servic.js'
+
 var gIdx = 0
 
 const locs = [];
@@ -28,6 +30,7 @@ function creatNewLocation(lat, lng, id, title , weather = null, createdAt = Date
     }
     locs.push(loc)
     saveToStorage('locs', locs)
+    console.log(locs)
 }
 
 function saveloc(lat, lng){
