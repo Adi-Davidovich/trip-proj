@@ -6,6 +6,7 @@ export const locService = {
     getLocs,
     saveloc,
     deleteLoc,
+    connectReverseGoogleGeocodeApi,
     searchLocation
 }
 
@@ -73,13 +74,13 @@ function _connectGoogleGeocodeApi(address) {
         })
 }
 
-// function connectReverseGoogleGeocodeApi(lat,lng) {
-//     const API_KEY = 'AIzaSyCc7Qnw5U_LAip2s7WPpW-1UBsMnil8DMA';
-//     return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${API_KEY}`)
-//         .then(res => {
-//                 const locationNAme = res.data.results[0]['formatted_address']
-//                 return locationNAme
-//         })
-// }
+function connectReverseGoogleGeocodeApi(lat,lng) {
+    const API_KEY = 'AIzaSyCc7Qnw5U_LAip2s7WPpW-1UBsMnil8DMA';
+    return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${API_KEY}`)
+        .then(res => {
+                const locationNAme = res.data.results[0]['formatted_address']
+                return locationNAme
+        })
+}
 
 

@@ -8,14 +8,12 @@
 </head>
 
 <body>
-    <h1>TravelTip Starter</h1>
+    <h1>TravelTip</h1>
     <input type="text" class="search"><button onclick="onSearchLocation()" class="btn-search">Go</button>
-
-    
     <button onclick="onGetUserPos()" class="btn-user-pos">My Position</button>
+    <p class="my-location" hidden>You are at: <span class="user-pos"></span></p>
+
     <div id="map" style="width: 500px; height: 400px;"></div>
-    <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
-    <p>You are at: <span class="user-pos"></span></p>
     
     <p>Locations: <div class="locs"></div></p>
 
