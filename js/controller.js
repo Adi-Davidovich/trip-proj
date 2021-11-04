@@ -52,6 +52,7 @@ function onSaveLoc(lat, lng) {
     _renderLoc()
 }
 
+
 function _renderLoc() {
     const elLocs = document.querySelector(".locs");
     locService.getLocs().then(locs => {
@@ -77,15 +78,15 @@ function onDeleteLoc(locId, locTitle) {
     locService.deleteLoc(locId)
     mapService.deleteMarker(locTitle)
     _renderLoc()
-    // const marker = mapService.addMarker(pos, title);
-    // marker.setMap(null);
 }
+
 
 function onGoTo(lat, lng, title) {
     mapService.panTo(lat, lng);
     const pos = { lat: lat, lng: lng };
     mapService.addMarker(pos, title);
 }
+
 
 function onSearchLocation() {
     const searchValue = document.querySelector('.search').value
