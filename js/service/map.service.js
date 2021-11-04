@@ -4,21 +4,21 @@ import { storageService } from './storage.servic.js'
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+    deleteMarker
 }
 
-var gMap;
+let gMap;
+let markers = [];
+
 function initMap(lat = 32.0749831, lng = 34.9120554) {
-    console.log('InitMap');
     return _connectGoogleApi()
         .then(() => {
-            console.log('google available');
             gMap = new google.maps.Map(
                 document.querySelector('#map'), {
                 center: { lat, lng },
                 zoom: 15
             })
-            console.log('Map!', gMap);
             let infoWindow = new google.maps.InfoWindow({
                 content: "Click the map to save location!",
                 position: { lat, lng },
@@ -49,13 +49,25 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
 }
 
 
-function addMarker(loc) {
+function addMarker(loc, title) {
     var marker = new google.maps.Marker({
         position: loc,
         map: gMap,
-        title: 'Hello World!'
+        title
     });
+    markers.push(marker);
     return marker;
+}
+
+function deleteMarker(title){
+    if (!markers || markers.length === 0) return
+    else{
+        const i = markers.findIndex(marker => {
+            return marker.title === title
+        })
+        markers[i].setMap(null)
+        markers.splice(i,1)
+    }
 }
 
 
@@ -67,7 +79,7 @@ function panTo(lat, lng) {
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = 'AIzaSyCQw8nuq9TYNA8CG5A5zILLJxpSaQdlO2M'; //TODO: Enter your API Key
+    const API_KEY = 'AIzaSyCQw8nuq9TYNA8CG5A5zILLJxpSaQdlO2M';
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
     elGoogleApi.async = true;
