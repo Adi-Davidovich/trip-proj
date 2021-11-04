@@ -20,7 +20,7 @@ function getLocs() {
 }
 
 
-function creatNewLocation(lat, lng, title, weather = null, updatedAt = null) {
+function createNewLocation(lat, lng, title, weather = null, updatedAt = null) {
     var loc = {
         id: utilService.makeId(),
         title,
@@ -39,7 +39,7 @@ function creatNewLocation(lat, lng, title, weather = null, updatedAt = null) {
 
 function saveloc(lat, lng) {
     var title = document.querySelector(".save-loc").value
-    creatNewLocation(lat, lng, title)
+    createNewLocation(lat, lng, title)
 }
 
 
@@ -56,7 +56,7 @@ function searchLocation(searchValue) {
          const lat = res.lat;
          const lng = res.lng;
          const title = searchValue;
-         creatNewLocation(lat, lng, title);
+         createNewLocation(lat, lng, title);
          mapService.panTo(lat, lng);
      })
 }
@@ -72,3 +72,14 @@ function _connectGoogleGeocodeApi(address) {
             }
         })
 }
+
+// function connectReverseGoogleGeocodeApi(lat,lng) {
+//     const API_KEY = 'AIzaSyCc7Qnw5U_LAip2s7WPpW-1UBsMnil8DMA';
+//     return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${API_KEY}`)
+//         .then(res => {
+//                 const locationNAme = res.data.results[0]['formatted_address']
+//                 return locationNAme
+//         })
+// }
+
+
