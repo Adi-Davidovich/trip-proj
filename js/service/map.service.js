@@ -42,10 +42,17 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                     <button onclick="onSaveLoc(${lat}, ${lng})">save place</button>`
                 );
                 infoWindow.open(gMap);
+        
               });
               
         })
         
+}
+
+
+function panTo(lat, lng) {
+    var laLatLng = new google.maps.LatLng(lat, lng);
+    gMap.panTo(laLatLng);
 }
 
 
@@ -54,27 +61,22 @@ function addMarker(loc, title) {
         position: loc,
         map: gMap,
         title
-    });
+    });    
     markers.push(marker);
     return marker;
-}
+}    
+
 
 function deleteMarker(title){
     if (!markers || markers.length === 0) return
     else{
         const i = markers.findIndex(marker => {
             return marker.title === title
-        })
+        })    
         markers[i].setMap(null)
         markers.splice(i,1)
-    }
-}
-
-
-function panTo(lat, lng) {
-    var laLatLng = new google.maps.LatLng(lat, lng);
-    gMap.panTo(laLatLng);
-}
+    }    
+}    
 
 
 function _connectGoogleApi() {
